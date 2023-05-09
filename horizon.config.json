@@ -1,0 +1,36 @@
+{
+  "wsRpc": "****",
+  "httpRpc": "****",
+  "webhook": "****_optional",
+  "dbConnectionString": "****_optional",
+  "network": "polygon",
+  "addresses": [
+    "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+  ],
+  "parse": {
+    "network": false,
+    "emitter": false,
+    "to": false,
+    "from": false,
+    "nonce":  false,
+    "amount": false,
+    "gasLimit":  false,
+    "gasPrice": false,
+    "gasFeeCap":  false,
+    "gasTipCap": false,
+    "data":  false,
+    "accessList": false,
+    "isFake":  false
+  },
+  "events": [
+    {
+      "label": "Transfer",
+      "arguments": [
+        {"label": "from", "type": "address"},
+        {"label": "to", "type": "address"},
+        {"label": "value", "type": "uint256"}
+      ]
+    }
+  ]
+}
+
