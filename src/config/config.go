@@ -25,6 +25,16 @@ type parsingConfiguration struct {
 	IsFake     bool
 }
 
+type Event struct {
+	Table     string
+	Label     string
+	Arguments []struct {
+		Label   string
+		Type    string
+		Indexed bool
+	}
+}
+
 type config struct {
 	WsRpc     string
 	HttpRpc   string
@@ -33,14 +43,8 @@ type config struct {
 	Network   string
 	Addresses []common.Address
 	Parse     parsingConfiguration
-	Events    []struct {
-		Label     string
-		Arguments []struct {
-			Label string
-			Type  string
-		}
-	}
-	Topics []common.Hash
+	Events    []Event
+	Topics    map[common.Hash]int // a map of event signatures to event indexes
 }
 
 var Config config
@@ -56,15 +60,17 @@ func Setup() {
 	}
 
 	// Building topics
-	for _, event := range Config.Events {
+	Config.Topics = make(map[common.Hash]int)
+	for i, event := range Config.Events {
 		arguments := make([]string, len(event.Arguments))
-		for i, argument := range event.Arguments {
-			arguments[i] = argument.Type
+		for j, argument := range event.Arguments {
+			arguments[j] = argument.Type
 		}
 		argumentsInline := strings.Join(arguments, ",")
 		signature := crypto.Keccak256Hash(
 			[]byte(event.Label + "(" + argumentsInline + ")"),
 		)
-		Config.Topics = append(Config.Topics, signature)
+		log.Println(event.Label + "(" + argumentsInline + ")")
+		Config.Topics[signature] = i
 	}
 }

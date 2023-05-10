@@ -22,10 +22,15 @@ func Run() (err error) {
 	}
 
 	// Preparing filter query
+	topics := make([]common.Hash, len(config.Config.Events))
+	for hash, i := range config.Config.Topics {
+		topics[i] = hash
+	}
 	query := ethereum.FilterQuery{
 		Addresses: config.Config.Addresses,
-		Topics:    [][]common.Hash{config.Config.Topics},
+		Topics:    [][]common.Hash{topics},
 	}
+	log.Println(query.Topics)
 
 	// Creating logs channel
 	logs := make(chan types.Log)
@@ -59,7 +64,7 @@ func watch(sub ethereum.Subscription, logs <-chan types.Log) {
 			utils.Wg.Done()
 			return
 		case logEntry := <-logs:
-			log.Println(logEntry.Topics[0].Hex())
+			go process(logEntry)
 		}
 	}
 }

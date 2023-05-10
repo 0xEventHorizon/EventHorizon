@@ -24,11 +24,12 @@
   },
   "events": [
     {
+      "table": "usdt_transfers",
       "label": "Transfer",
       "arguments": [
-        {"label": "from", "type": "address"},
-        {"label": "to", "type": "address"},
-        {"label": "value", "type": "uint256"}
+        {"label": "from", "type": "address", "indexed": true},
+        {"label": "to", "type": "address", "indexed": true},
+        {"label": "value", "type": "uint256", "indexed": false}
       ]
     }
   ]
