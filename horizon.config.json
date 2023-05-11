@@ -1,27 +1,22 @@
 {
-  "wsRpc": "****",
-  "httpRpc": "****",
-  "webhook": "****_optional",
-  "dbConnectionString": "****_optional",
+  "RpcWs": "****",
+  "RpcHttp": "****",
+  "webhook": {
+    "url": "http://localhost:8081/eventhorizon",
+    "headers": {
+      "X-Auth-EventHorizon": "1234567890"
+    },
+    "maxAttempts": 3
+  },
+  "database": {
+    "connectionString": "",
+    "schema": "event_horizon"
+  },
   "network": "polygon",
   "addresses": [
     "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
   ],
-  "parse": {
-    "network": false,
-    "emitter": false,
-    "to": false,
-    "from": false,
-    "nonce":  false,
-    "amount": false,
-    "gasLimit":  false,
-    "gasPrice": false,
-    "gasFeeCap":  false,
-    "gasTipCap": false,
-    "data":  false,
-    "accessList": false,
-    "isFake":  false
-  },
+  "fullTx": false,
   "events": [
     {
       "table": "usdt_transfers",

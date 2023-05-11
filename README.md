@@ -17,8 +17,8 @@ In a current version only 1 watcher per service is supported.
 Here's the refference for the config file:
 ```
 {
-  "wsRpc": "****",              // Websocket RPC endpoint
-  "httpRpc": "****",            // HTTP RPC endpoint
+  "RpcWs": "****",              // Websocket RPC endpoint
+  "RpcHttp": "****",            // HTTP RPC endpoint
   "webhook": "****",            // Webhook endpoint (will be triggered by each captured event)
   "dbConnectionString": "****", // PostgreSQL conn string (Work in proggress)
   "network": "polygon",         // Network label

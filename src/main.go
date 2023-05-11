@@ -13,7 +13,7 @@ func main() {
 	config.Setup()
 
 	// Initializing database
-	if config.Config.DbUrl != "" {
+	if config.Config.Database.ConnectionString != "" {
 		err := db.Instance.Setup()
 		if err != nil {
 			log.Fatal(err)

@@ -9,22 +9,6 @@ import (
 	"strings"
 )
 
-type parsingConfiguration struct {
-	Network    bool
-	Emitter    bool
-	To         bool
-	From       bool
-	Nonce      bool
-	Amount     bool
-	GasLimit   bool
-	GasPrice   bool
-	GasFeeCap  bool
-	GasTipCap  bool
-	Data       bool
-	AccessList bool
-	IsFake     bool
-}
-
 type Event struct {
 	Table     string
 	Label     string
@@ -36,13 +20,20 @@ type Event struct {
 }
 
 type config struct {
-	WsRpc     string
-	HttpRpc   string
-	Webhook   string
-	DbUrl     string
+	RpcWs   string
+	RpcHttp string
+	Webhook struct {
+		Url         string
+		Headers     map[string]string
+		MaxAttempts uint64
+	}
+	Database struct {
+		ConnectionString string
+		Schema           string
+	}
 	Network   string
 	Addresses []common.Address
-	Parse     parsingConfiguration
+	FullTx    bool
 	Events    []Event
 	Topics    map[common.Hash]int // a map of event signatures to event indexes
 }

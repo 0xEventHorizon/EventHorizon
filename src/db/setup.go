@@ -30,7 +30,7 @@ func (db *db) Setup() error {
 
 	// Connecting to a database
 	log.Println("DB: connecting to database")
-	connection, err := pgxpool.Connect(context.Background(), config.Config.DbUrl)
+	connection, err := pgxpool.Connect(context.Background(), config.Config.Database.ConnectionString)
 	if err != nil {
 		return err
 	}

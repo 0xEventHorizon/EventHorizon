@@ -11,12 +11,11 @@ import (
 	"log"
 )
 
-//var httpClient *ethclient.Client
+//
 
 func Run() (err error) {
 	// Dealing Node
-	//httpClient, err := ethclient.Dial(config.Config.HttpRpc)
-	wsClient, err := ethclient.Dial(config.Config.WsRpc)
+	wsClient, err := ethclient.Dial(config.Config.RpcWs)
 	if err != nil {
 		return err
 	}
