@@ -16,7 +16,7 @@ That means that one microservice is used to index one network and one set of add
 
 Here's the refference for the config file:
 
-```json
+```javascript
 {
   // Websocket RPC endpoint
   "RpcWs": "****",
